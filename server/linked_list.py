@@ -1,3 +1,5 @@
+# linked_list.py
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -8,16 +10,16 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    # Insert new node at the front
+    # Insert at front (O(1))
     def insert_at_front(self, data):
         new_node = Node(data)
         new_node.next = self.head
         self.head = new_node
 
-    # Insert new node at the end
+    # Optional: Insert at end (O(n))
     def insert_at_end(self, data):
         new_node = Node(data)
-        if self.head is None:
+        if not self.head:
             self.head = new_node
             return
         current = self.head
@@ -25,7 +27,7 @@ class LinkedList:
             current = current.next
         current.next = new_node
 
-    # Public method for recursive sum
+    # Recursive sum
     def recursive_sum(self):
         return self._recursive_sum(self.head)
 
@@ -34,24 +36,32 @@ class LinkedList:
             return 0
         return node.data + self._recursive_sum(node.next)
 
-    # Public method for recursive search
+    # Recursive search
     def recursive_search(self, target):
-        return self._recursive_search(target, self.head)
+        return self._recursive_search(self.head, target)
 
-    def _recursive_search(self, target, node):
+    def _recursive_search(self, node, target):
         if node is None:
             return False
         if node.data == target:
             return True
-        return self._recursive_search(target, node.next)
+        return self._recursive_search(node.next, target)
 
-    # Public method for recursive reverse
+    # Recursive reverse (in-place)
     def recursive_reverse(self):
         self.head = self._recursive_reverse(self.head, None)
 
-    def _recursive_reverse(self, node, prev):
-        if node is None:
+    def _recursive_reverse(self, current, prev):
+        if current is None:
             return prev
-        next_node = node.next
-        node.next = prev
-        return self._recursive_reverse(next_node, node)
+        next_node = current.next
+        current.next = prev
+        return self._recursive_reverse(next_node, current)
+
+    # Utility: Print list
+    def print_list(self):
+        current = self.head
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("None")

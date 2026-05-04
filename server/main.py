@@ -1,27 +1,21 @@
 from linked_list import LinkedList
 
 if __name__ == "__main__":
-    """
-    Use this file to create a LinkedList instance and perform operations 
-    like insertion, recursion-based sum, search, and reverse.
-    """
+    ll = LinkedList()
+    ll.insert_at_front(10)
+    ll.insert_at_front(20)
+    ll.insert_at_end(30)
 
-    # TODO: 1) Create a LinkedList instance
-    
+    print("Original list:")
+    ll.print_list()
 
-    # TODO: 2) Insert some sample data using insert_at_front or insert_at_end
-    
-    # TODO: 3) Display the list to verify insertion
-    
+    print("Sum of IDs:", ll.recursive_sum())
+    print("Search 20:", ll.recursive_search(20))
+    print("Search 99:", ll.recursive_search(99))
 
-    # TODO: 4) Call recursive_sum and print the result
-    
-
-    # TODO: 5) Call recursive_search with a target and print result
-    
-
-    # TODO: 6) Call recursive_reverse, then display the reversed list
-    
+    ll.recursive_reverse()
+    print("Reversed list:")
+    ll.print_list()
 
 
-# 
+
